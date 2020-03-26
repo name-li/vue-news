@@ -3,8 +3,15 @@ import Vue from "vue";
 // App组件（以.vue结尾的文件都是组件）
 import App from "./App.vue";
 // 路由对象
+// import Vue from "vue";
+import Vant from "vant";
 import router from "./router";
-
+import axios from "axios";
+Vue.use(Vant);
+// 绑定到原型
+Vue.prototype.$axios = axios;
+//添加基路径
+axios.defaults.baseURL = "http://hmtoutiao-api.atlansic.com";
 // 上线环境是否提示信息(忽略)
 Vue.config.productionTip = false;
 

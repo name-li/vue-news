@@ -1,13 +1,17 @@
 <template>
-  <div class="box">
-    <div class="close">×</div>
-    <div class="login">
+  <div class="container">
+    <!-- 返回上一页按钮 -->
+    <div class="back-btn">
+      <span class="iconfont iconicon-test"></span>
+    </div>
+
+    <!-- logo -->
+    <div class="logo">
       <span class="iconfont iconnew"></span>
     </div>
-    <!-- <input type="text" placeholder="用户名/手机号码" class="username" />
-    <input type="password" name id placeholder="密码" class="password" />
-    <input type="button" value="登录" class="btn" />-->
-    <!-- 表单组件 -->
+
+    <!-- 使用vant的表单 -->
+    <!-- van-form是表单的组件， @submit是表单按钮提交的事件 -->
     <van-form @submit="onSubmit" class="form">
       <!-- van-field是表单的字段 -->
       <!-- rules是表单字段的规则，required表示这个输入框是必填 -->
@@ -16,6 +20,13 @@
         name="手机号码"
         placeholder="手机号码"
         :rules="[{ required: true, message: '请填写手机号码' }]"
+      />
+      <!-- 昵称的输入框 -->
+      <van-field
+        v-model="form.nickname"
+        name="昵称"
+        placeholder="请输入昵称"
+        :rules="[{ required: true, message: '请填写昵称' }]"
       />
       <!-- 密码输入框，和上面的属性是一样的 -->
       <van-field
@@ -28,23 +39,23 @@
       <div>
         <!-- 如果这个按钮是在van-form组件内部，
         并且按钮的native-type="submit"，说明点击这个按钮就会触发submit事件-->
-        <van-button round block type="info" native-type="submit">登录</van-button>
+        <van-button round block type="info" native-type="submit">注册</van-button>
       </div>
     </van-form>
-    <router-link to="/register">
-      <van-button round block class="link-register">注册</van-button>
+    <router-link to="/login">
+      <van-button round block class="link-register">登录</van-button>
     </router-link>
   </div>
 </template>
 
 <script>
-import { log } from "util";
 export default {
   data() {
     return {
       // 保存表单数据
       form: {
         username: "",
+        nickname: "", // 昵称
         password: ""
       }
     };
@@ -56,7 +67,7 @@ export default {
       // 调用axios发起异步请求，类似$.ajax(类似不代表一样)
       this.$axios({
         // 接口地址
-        url: "/login",
+        url: "/register",
         // 声明请求的方法为post请求(一定要注册这个method没有s)
         // 跟vue的methods属性毫无关系
         method: "POST",
@@ -66,8 +77,6 @@ export default {
       }).then(res => {
         // 获取到返回的信息
         const { message } = res.data;
-        console.log(res);
-
         // 使用vant的弹窗提示用，success表示成功的弹窗
         this.$toast.success(message);
       });
@@ -77,26 +86,24 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.box {
-  display: flex;
-  flex-direction: column;
-  // background-color: rgba(242, 242, 242);
-  padding: 0 10px;
-  width: 100%;
-  height: 100%;
+.container {
+  padding: 20 / 360 * 100vw;
 }
-.login {
-  align-self: center;
-}
-.close {
-  font-weight: lighter;
-  color: #040404;
 
-  font-size: 50px;
+// 样式会被iconfont覆盖的，所以要选中span
+.back-btn span {
+  font-size: 27 / 360 * 100vw;
+  line-height: 1;
 }
-.iconnew {
-  font-size: 150px;
-  color: rgb(216, 30, 6);
+
+.logo {
+  text-align: center;
+  margin-top: 20 / 360 * 100vw;
+}
+
+.logo span {
+  font-size: 126 / 360 * 100vw;
+  color: #cc3300;
 }
 
 .form {
@@ -117,6 +124,7 @@ export default {
     border: 1px solid #cc3300;
   }
 }
+
 .link-register {
   margin-top: 20 / 360 * 100vw;
 }
