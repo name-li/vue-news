@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { log } from "util";
+// import { log } from "util";
 export default {
   data() {
     return {
@@ -65,11 +65,14 @@ export default {
         // .then方法里面的函数就是成功的回调函数,axios没有succces
       }).then(res => {
         // 获取到返回的信息
-        const { message } = res.data;
+        const { message, data } = res.data;
         console.log(res);
 
         // 使用vant的弹窗提示用，success表示成功的弹窗
         this.$toast.success(message);
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        console.log(res.data.data.token);
+        this.$router.push("/personal");
       });
     }
   }
