@@ -1,9 +1,9 @@
 <template>
   <div class="listbar">
-    <router-link class="list_son" to="#">
+    <router-link class="list_son" :to="path||''">
       <span>{{label}}</span>
       <span class="tips">
-      {{tips}}
+        {{tips}}
         <span class="iconfont iconjiantou1"></span>
       </span>
     </router-link>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    props:["label","tips"]
+  props: ["label", "tips", "path"]
 };
 </script>
 

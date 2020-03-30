@@ -24,6 +24,10 @@ const routes = [
   {
     path: "/edit-profile",
     component: () => import("@/views/EditProfile")
+  },
+  {
+    path: "/follow",
+    component: () => import("@/views/Follow")
   }
 ];
 

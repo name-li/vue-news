@@ -24,7 +24,13 @@
     </router-link>
 
     <!-- 信息 -->
-    <Listbar v-for="(item, index) in rows" :label="item.label" :tips="item.tips" :key="index" />
+    <Listbar
+      v-for="(item, index) in rows"
+      :label="item.label"
+      :tips="item.tips"
+      :key="index"
+      :path="item.path"
+    />
     <Listbar label="退出" @click.native="handleClick()" />
   </div>
 </template>
@@ -37,7 +43,7 @@ export default {
   data() {
     return {
       rows: [
-        { label: "我的关注", tips: "关注的用户" },
+        { label: "我的关注", tips: "关注的用户", path: "/follow" },
         { label: "我的跟贴", tips: "跟帖/回复" },
         { label: "我的收藏", tips: "文章/视频" }
       ],
