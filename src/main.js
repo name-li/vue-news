@@ -14,7 +14,22 @@ Vue.prototype.$axios = axios;
 axios.defaults.baseURL = "http://hmtoutiao-api.atlansic.com";
 // 上线环境是否提示信息(忽略)
 Vue.config.productionTip = false;
-
+//导航守卫
+router.beforeEach((to, from, next) => {
+  //判断要进入的页面
+  if (to.path === "/personal") {
+    // 获取存储在本地的数据
+    const userJson = JSON.parse(localStorage.getItem("userInfo"));
+    if (userJson.token) {
+      next();
+    } else {
+      //跳转到登录页
+      next("/login");
+    }
+  } else {
+    next();
+  }
+});
 // 创建一个根实例
 // .$mount('#app') 相当于el配置，指定id为app的元素作为模板
 new Vue({

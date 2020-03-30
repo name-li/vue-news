@@ -20,6 +20,10 @@ const routes = [
   {
     path: "/personal",
     component: () => import("@/views/Personal")
+  },
+  {
+    path: "/edit-profile",
+    component: () => import("@/views/EditProfile")
   }
 ];
 

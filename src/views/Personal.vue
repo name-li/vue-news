@@ -1,30 +1,28 @@
 <template>
   <div class="container">
     <!-- 个人中心 -->
-    <div class="person_centered">
-      <!-- 返回 -->
-      <span class="iconfont iconjiantou" @click="$router.back()"></span>
-      <strong class="centered">个人中心</strong>
-      <!-- 回到首页 -->
-      <span class="iconfont iconshouye" @click="$router.push('/')"></span>
-    </div>
-    <div class="header">
-      <!-- 头像 -->
-      <div class="avatar">
-        <img :src="$axios.defaults.baseURL + userInfoData.head_img" alt />
-      </div>
-      <div class="profile">
-        <div>
-          <!-- 昵称 -->
-          <span class="iconfont iconxingbienan" v-if="userInfoData.gender===1"></span>
-          <span class="iconfont iconxingbienv" v-if="userInfoData.gender===0"></span>
-          <span>{{ userInfoData.nickname }}</span>
+    <NavigateBar title="个人中心" shouyeShow="true" />
+    <router-link to="/edit-profile">
+      <div class="header">
+        <!-- 头像 -->
+        <div class="avatar">
+          <img :src="$axios.defaults.baseURL + userInfoData.head_img" alt />
         </div>
-        <p>{{ moment(userInfoData.create_date).format("YYYY-MM-DD") }}</p>
+
+        <div class="profile">
+          <div>
+            <!-- 昵称 -->
+            <span class="iconfont iconxingbienan" v-if="userInfoData.gender===1"></span>
+            <span class="iconfont iconxingbienv" v-if="userInfoData.gender===0"></span>
+            <span>{{ userInfoData.nickname }}</span>
+          </div>
+          <p>{{ moment(userInfoData.create_date).format("YYYY-MM-DD") }}</p>
+        </div>
+        <!-- 右侧箭头 -->
+        <span class="arrow iconfont iconjiantou1"></span>
       </div>
-      <!-- 右侧箭头 -->
-      <span class="arrow iconfont iconjiantou1"></span>
-    </div>
+    </router-link>
+
     <!-- 信息 -->
     <Listbar v-for="(item, index) in rows" :label="item.label" :tips="item.tips" :key="index" />
     <Listbar label="退出" @click.native="handleClick()" />
@@ -33,6 +31,7 @@
 
 <script>
 import Listbar from "@/components/Listbar";
+import NavigateBar from "@/components/NavigateBar";
 import moment from "moment";
 export default {
   data() {
@@ -50,7 +49,8 @@ export default {
   },
   //注册组件,
   components: {
-    Listbar
+    Listbar,
+    NavigateBar
   },
   mounted() {
     //组件加载完毕
@@ -94,16 +94,6 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  // 中心样式
-  .person_centered {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20/360 * 100vw;
-    line-height: 48/360 * 100vw;
-    .iconshouye {
-      font-size: 20px;
-    }
-  }
   //头部样式
   .header {
     padding: 20 / 360 * 100vw;
