@@ -4,7 +4,7 @@ import Vue from "vue";
 import App from "./App.vue";
 // 路由对象
 // import Vue from "vue";
-import Vant from "vant";
+import Vant, { Toast } from "vant";
 import router from "./router";
 import axios from "axios";
 Vue.use(Vant);
@@ -17,9 +17,9 @@ Vue.config.productionTip = false;
 //导航守卫
 router.beforeEach((to, from, next) => {
   //判断要进入的页面
-  if (to.path === "/personal") {
+  if (to.meta.authorization) {
     // 获取存储在本地的数据
-    const userJson = JSON.parse(localStorage.getItem("userInfo"));
+    const userJson = JSON.parse(localStorage.getItem("userInfo")) || {};
     if (userJson.token) {
       next();
     } else {
@@ -30,6 +30,19 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+//axios的响应拦截器
+axios.interceptors.response.use(
+  res => {
+    return res;
+  },
+  error => {
+    //返回的结果是错误的，会进入错误的处理函数中，
+    const { statusCode, message } = error.response.data;
+    if (statusCode === 400) {
+      Toast.fail(message);
+    }
+  }
+);
 // 创建一个根实例
 // .$mount('#app') 相当于el配置，指定id为app的元素作为模板
 new Vue({

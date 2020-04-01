@@ -44,8 +44,8 @@ export default {
     return {
       rows: [
         { label: "我的关注", tips: "关注的用户", path: "/follow" },
-        { label: "我的跟贴", tips: "跟帖/回复" },
-        { label: "我的收藏", tips: "文章/视频" }
+        { label: "我的跟贴", tips: "跟帖/回复", path: "/comment" },
+        { label: "我的收藏", tips: "文章/视频", path: "/star" }
       ],
       //储存个人的详细信息
       userInfoData: {},

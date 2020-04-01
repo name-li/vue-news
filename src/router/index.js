@@ -19,15 +19,28 @@ const routes = [
   },
   {
     path: "/personal",
-    component: () => import("@/views/Personal")
+    component: () => import("@/views/Personal"),
+    meta: {
+      authorization: true
+    }
   },
   {
     path: "/edit-profile",
-    component: () => import("@/views/EditProfile")
+    component: () => import("@/views/EditProfile"),
+    meta: {
+      authorization: true
+    }
   },
   {
     path: "/follow",
-    component: () => import("@/views/Follow")
+    component: () => import("@/views/Follow"),
+    meta: {
+      authorization: true
+    }
+  },
+  {
+    path: "/comment",
+    component: () => import("@/views/Comment")
   }
 ];
 
