@@ -40,7 +40,17 @@ const routes = [
   },
   {
     path: "/comment",
-    component: () => import("@/views/Comment")
+    component: () => import("@/views/Comment"),
+    meta: {
+      authorization: true
+    }
+  },
+  {
+    path: "/star",
+    component: () => import("@/views/Star"),
+    meta: {
+      authorization: true
+    }
   }
 ];
 
