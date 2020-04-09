@@ -2,7 +2,7 @@
   <div class="video">
     <h4>{{data.title}}</h4>
     <div class="cover">
-      <img src alt />
+      <img :src="$axios.defaults.baseURL + data.cover[0].url" alt />
       <!-- 图片按钮遮罩 -->
       <div class="cover-layer">
         <span class="iconfont iconshipin"></span>

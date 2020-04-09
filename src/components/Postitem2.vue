@@ -2,7 +2,7 @@
   <div class="imgList">
     <h4>{{data.title}}</h4>
     <div class="images">
-      <img :src="$axios.defaults.baseURl+item.Url" v-for(item,index) in data-.cover :key="index" />
+      <img :src="$axios.defaults.baseURL+item.url" v-for="(item,index) in data.cover" :key="index" />
     </div>
     <p>{{data.user.nickname}} {{data.comment_length}}跟帖</p>
   </div>
