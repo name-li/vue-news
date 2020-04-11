@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <div class="header">
       <div class="iconfont iconnew"></div>
-      <router-link to="#" class="search">
+      <router-link to="/search" class="search">
         <span class="iconfont iconsearch"></span>
         <span>搜素新闻</span>
       </router-link>

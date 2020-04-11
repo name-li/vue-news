@@ -64,6 +64,10 @@ const routes = [
       authorization: true,
     },
   },
+  {
+    path: "/search",
+    component: () => import("@/views/Search"),
+  },
 ];
 
 const router = new VueRouter({
