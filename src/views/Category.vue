@@ -89,6 +89,7 @@ export default {
   destroyed() {
     //页面销毁触发的事件
     //this.categories[this.categories.length - 1 是把V添加到最后一位
+    
     this.categories = [
       ...this.categoriesDle,
       ...this.categoriesAdd,
